@@ -1,0 +1,688 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&family=Open+Sans:wght@400;500;600;700;800&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Be+Vietnam+Pro:wght@100;200;300;400;500;600;700;800;900&family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:wght@400;700&family=Lora:wght@400;700&family=Merriweather:wght@400;700&family=Oswald:wght@400;700&family=Source+Sans+3:wght@400;700&family=Quicksand:wght@400;700&family=Mulish:wght@400;700&family=Cabin:wght@400;700&family=Nunito:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--app-font, "Inter"), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --color-emerald-400: rgba(var(--primary-rgb), 0.8);
+  --color-emerald-500: rgba(var(--primary-rgb), 1);
+  --color-emerald-600: rgba(var(--primary-rgb), 0.9);
+}
+
+:root {
+    --primary-color: #10b981;
+    --primary-rgb: 16, 185, 129;
+    --bg: #050505;
+    --app-font-size: 15px;
+    --app-font: "Inter";
+}
+
+html {
+    font-size: var(--app-font-size);
+}
+
+/* Global font size scaling for Tailwind pixel classes */
+.text-\[7px\] { font-size: calc(7 / 15 * 1rem) !important; }
+.text-\[8px\] { font-size: calc(8 / 15 * 1rem) !important; }
+.text-\[9px\] { font-size: calc(9 / 15 * 1rem) !important; }
+.text-\[10px\] { font-size: calc(10 / 15 * 1rem) !important; }
+.text-\[11px\] { font-size: calc(11 / 15 * 1rem) !important; }
+.text-\[12px\] { font-size: calc(12 / 15 * 1rem) !important; }
+.text-\[13px\] { font-size: calc(13 / 15 * 1rem) !important; }
+.text-\[14px\] { font-size: calc(14 / 15 * 1rem) !important; }
+.text-\[16px\] { font-size: calc(16 / 15 * 1rem) !important; }
+.text-\[18px\] { font-size: calc(18 / 15 * 1rem) !important; }
+.text-\[20px\] { font-size: calc(20 / 15 * 1rem) !important; }
+
+body {
+    font-family: var(--app-font, 'Inter'), sans-serif;
+    font-size: 1rem;
+    background-color: var(--bg);
+    color: #e5e5e5;
+    overflow-x: hidden;
+    /* Disable double-tap to zoom for faster clicks */
+    touch-action: manipulation;
+    /* Disable tap highlight color on mobile */
+    -webkit-tap-highlight-color: transparent;
+    /* Handle safe areas for mobile notches */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+}
+
+.custom-cursor-active, .custom-cursor-active * {
+    cursor: none !important;
+}
+
+.theme-light {
+    --bg: #ffffff;
+    background-color: var(--bg) !important;
+    color: #111827 !important;
+}
+
+.theme-light body {
+    background-color: var(--bg) !important;
+    color: #111827 !important;
+}
+
+/* Background Overrides */
+.theme-light .bg-black,
+.theme-light .bg-\[\#050505\],
+.theme-light .bg-\[\#080808\],
+.theme-light .bg-\[\#0a0a0a\],
+.theme-light .bg-\[\#020202\],
+.theme-light .bg-\[\#030303\],
+.theme-light .bg-\[\#010101\],
+.theme-light .bg-\[\#101010\],
+.theme-light .bg-neutral-900,
+.theme-light .bg-neutral-950,
+.theme-light .bg-zinc-900,
+.theme-light .bg-zinc-950,
+.theme-light .bg-stone-900,
+.theme-light .bg-stone-950,
+.theme-light .bg-slate-900,
+.theme-light .bg-slate-950,
+.theme-light [class*="bg-black"],
+.theme-light [class*="bg-neutral-900"],
+.theme-light [class*="bg-neutral-950"],
+.theme-light [class*="bg-zinc-900"],
+.theme-light [class*="bg-zinc-950"],
+.theme-light [class*="bg-stone-900"],
+.theme-light [class*="bg-stone-950"],
+.theme-light [class*="bg-slate-900"],
+.theme-light [class*="bg-slate-950"] {
+    background-color: #ffffff !important;
+    background-image: none !important;
+}
+
+.theme-light .bg-neutral-800,
+.theme-light .bg-zinc-800,
+.theme-light .bg-stone-800,
+.theme-light .bg-slate-800,
+.theme-light [class*="bg-neutral-800"],
+.theme-light [class*="bg-zinc-800"],
+.theme-light [class*="bg-stone-800"],
+.theme-light [class*="bg-slate-800"] {
+    background-color: #9ca3af !important; /* Gray-400 for strong visibility */
+    background-image: none !important;
+}
+
+/* Specific Toggle Visibility in Light Mode */
+.theme-light .rounded-full.bg-white {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.theme-light .bg-neutral-800.rounded-full,
+.theme-light .bg-emerald-500.rounded-full,
+.theme-light .bg-rose-500.rounded-full,
+.theme-light .bg-blue-500.rounded-full,
+.theme-light .bg-amber-500.rounded-full {
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+.theme-light .bg-neutral-800.rounded-full {
+    background-color: #6b7280 !important; /* Gray-500 for strong contrast on toggle tracks */
+    border: 2px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+.theme-light .bg-neutral-700,
+.theme-light .bg-zinc-700,
+.theme-light .bg-stone-700,
+.theme-light .bg-slate-700,
+.theme-light [class*="bg-neutral-700"],
+.theme-light [class*="bg-zinc-700"],
+.theme-light [class*="bg-stone-700"],
+.theme-light [class*="bg-slate-700"] {
+    background-color: #d1d5db !important; /* Gray-300 */
+    background-image: none !important;
+}
+
+.theme-light .text-glow {
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.2) !important;
+}
+
+.theme-light .bg-white\/\[0\.02\],
+.theme-light .bg-white\/\[0\.03\],
+.theme-light .bg-white\/5,
+.theme-light .bg-white\/10,
+.theme-light .bg-white\/20,
+.theme-light .bg-black\/5,
+.theme-light .bg-black\/10,
+.theme-light .bg-black\/20,
+.theme-light .bg-black\/40,
+.theme-light .bg-black\/60,
+.theme-light .bg-neutral-950\/40,
+.theme-light .bg-neutral-900\/40,
+.theme-light .bg-neutral-900\/50,
+.theme-light .bg-neutral-900\/60,
+.theme-light .bg-\[\#050505\]\/40,
+.theme-light .bg-\[\#020202\]\/40,
+.theme-light [class*="bg-black/5"],
+.theme-light [class*="bg-black/10"],
+.theme-light [class*="bg-black/20"],
+.theme-light [class*="bg-black/30"],
+.theme-light [class*="bg-black/40"],
+.theme-light [class*="bg-black/60"],
+.theme-light [class*="bg-neutral-900/10"],
+.theme-light [class*="bg-neutral-900/20"],
+.theme-light [class*="bg-neutral-900/30"],
+.theme-light [class*="bg-neutral-900/40"],
+.theme-light [class*="bg-neutral-950/10"],
+.theme-light [class*="bg-neutral-950/20"],
+.theme-light [class*="bg-neutral-950/30"],
+.theme-light [class*="bg-neutral-950/40"],
+.theme-light [class*="bg-white/5"],
+.theme-light [class*="bg-white/10"],
+.theme-light [class*="bg-white/20"],
+.theme-light [class*="hover:bg-white/5"]:hover,
+.theme-light [class*="hover:bg-white/10"]:hover,
+.theme-light [class*="hover:bg-black/5"]:hover,
+.theme-light [class*="hover:bg-black/10"]:hover {
+    background-color: rgba(0, 0, 0, 0.25) !important; /* Even more prominent */
+    background-image: none !important;
+    border: 1px solid var(--primary-color) !important;
+}
+
+/* Solid Background Overrides for Modals and Cards */
+.theme-light .bg-black,
+.theme-light .bg-neutral-950,
+.theme-light .bg-neutral-900,
+.theme-light .bg-zinc-950,
+.theme-light .bg-zinc-900,
+.theme-light .bg-\[\#050505\],
+.theme-light .bg-\[\#020202\],
+.theme-light .bg-\[\#030303\],
+.theme-light .bg-\[\#080808\],
+.theme-light .bg-\[\#0a0a0a\] {
+    background-color: #f3f4f6 !important; /* Gray-100 for better section definition */
+    background-image: none !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Colored Backgrounds - Increase opacity for light mode */
+.theme-light [class*="bg-emerald-500/"],
+.theme-light [class*="bg-green-500/"] { background-color: rgba(16, 185, 129, 0.15) !important; }
+.theme-light [class*="bg-blue-500/"] { background-color: rgba(59, 130, 246, 0.15) !important; }
+.theme-light [class*="bg-pink-500/"] { background-color: rgba(236, 72, 153, 0.15) !important; }
+.theme-light [class*="bg-orange-500/"] { background-color: rgba(249, 115, 22, 0.15) !important; }
+.theme-light [class*="bg-cyan-500/"] { background-color: rgba(6, 182, 212, 0.15) !important; }
+.theme-light [class*="bg-amber-500/"] { background-color: rgba(245, 158, 11, 0.15) !important; }
+.theme-light [class*="bg-indigo-500/"] { background-color: rgba(99, 102, 241, 0.15) !important; }
+.theme-light [class*="bg-rose-500/"] { background-color: rgba(244, 63, 94, 0.15) !important; }
+.theme-light [class*="bg-purple-500/"] { background-color: rgba(168, 85, 247, 0.15) !important; }
+.theme-light [class*="bg-fuchsia-500/"] { background-color: rgba(217, 70, 239, 0.15) !important; }
+/* Solid Primary Colors - Keep them mostly solid but slightly adjusted for light mode if needed */
+.theme-light .bg-emerald-500,
+.theme-light .bg-blue-500,
+.theme-light .bg-cyan-500,
+.theme-light .bg-pink-500,
+.theme-light .bg-orange-500,
+.theme-light .bg-amber-500,
+.theme-light .bg-indigo-500,
+.theme-light .bg-rose-500 {
+    background-color: var(--primary-color) !important;
+    opacity: 1 !important;
+    border: 1.5px solid rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Border Overrides */
+.theme-light .border-white\/5,
+.theme-light .border-white\/10,
+.theme-light .border-white\/20,
+.theme-light .border-white\/40,
+.theme-light .border-black\/5,
+.theme-light .border-black\/10,
+.theme-light .border-neutral-800,
+.theme-light .border-zinc-800,
+.theme-light .border-stone-800,
+.theme-light .border-slate-800,
+.theme-light [class*="border-white"],
+.theme-light [class*="border-neutral-800"],
+.theme-light [class*="border-zinc-800"],
+.theme-light [class*="border-stone-800"],
+.theme-light [class*="border-slate-800"] {
+    border-color: var(--primary-color) !important; /* Matrix color applied to borders in light mode */
+    border-width: 1.5px !important;
+}
+
+.theme-light .border-white {
+    border-color: var(--primary-color) !important; /* Solid white borders become matrix colored borders */
+}
+
+/* Text Overrides */
+.theme-light .text-white,
+.theme-light .text-neutral-50,
+.theme-light .text-neutral-100,
+.theme-light .text-neutral-200,
+.theme-light .text-neutral-300,
+.theme-light .text-neutral-400,
+.theme-light .text-neutral-500,
+.theme-light .text-neutral-600,
+.theme-light .text-neutral-700,
+.theme-light .text-neutral-800,
+.theme-light .text-neutral-900,
+.theme-light .text-zinc-50,
+.theme-light .text-zinc-100,
+.theme-light .text-zinc-200,
+.theme-light .text-zinc-300,
+.theme-light .text-zinc-700,
+.theme-light .text-zinc-800,
+.theme-light .text-zinc-900,
+.theme-light .text-stone-50,
+.theme-light .text-stone-100,
+.theme-light .text-stone-200,
+.theme-light .text-stone-300,
+.theme-light .text-stone-700,
+.theme-light .text-stone-800,
+.theme-light .text-stone-900,
+.theme-light .text-slate-50,
+.theme-light .text-slate-100,
+.theme-light .text-slate-200,
+.theme-light .text-slate-300,
+.theme-light .text-slate-700,
+.theme-light .text-slate-800,
+.theme-light .text-slate-900,
+.theme-light [class*="text-white"],
+.theme-light [class*="text-neutral-50"],
+.theme-light [class*="text-neutral-100"],
+.theme-light [class*="text-neutral-200"],
+.theme-light [class*="text-neutral-300"],
+.theme-light [class*="text-neutral-400"],
+.theme-light [class*="text-neutral-500"],
+.theme-light [class*="text-neutral-600"],
+.theme-light [class*="text-neutral-700"],
+.theme-light [class*="text-neutral-800"],
+.theme-light [class*="text-neutral-900"],
+.theme-light [class*="text-zinc-200"],
+.theme-light [class*="text-stone-200"],
+.theme-light [class*="text-slate-200"],
+.theme-light .group-hover\:text-white:hover,
+.theme-light [class*="group-hover:text-white"]:hover {
+    color: #111827 !important;
+}
+
+.theme-light .text-emerald-400,
+.theme-light [class*="text-emerald-400"] { color: #047857 !important; }
+.theme-light .text-blue-400,
+.theme-light [class*="text-blue-400"] { color: #1d4ed8 !important; }
+.theme-light .text-pink-400,
+.theme-light [class*="text-pink-400"] { color: #be185d !important; }
+.theme-light .text-orange-400,
+.theme-light [class*="text-orange-400"] { color: #c2410c !important; }
+.theme-light .text-cyan-400,
+.theme-light [class*="text-cyan-400"] { color: #0e7490 !important; }
+.theme-light .text-amber-400,
+.theme-light [class*="text-amber-400"] { color: #b45309 !important; }
+.theme-light .text-indigo-400,
+.theme-light [class*="text-indigo-400"] { color: #4338ca !important; }
+.theme-light .text-rose-400,
+.theme-light [class*="text-rose-400"] { color: #be123c !important; }
+
+.theme-light .text-emerald-500,
+.theme-light [class*="text-emerald-500"] { color: #065f46 !important; }
+.theme-light .text-blue-500,
+.theme-light [class*="text-blue-500"] { color: #1e40af !important; }
+.theme-light .text-pink-500,
+.theme-light [class*="text-pink-500"] { color: #9d174d !important; }
+.theme-light .text-orange-500,
+.theme-light [class*="text-orange-500"] { color: #9a3412 !important; }
+.theme-light .text-cyan-500,
+.theme-light [class*="text-cyan-500"] { color: #155e75 !important; }
+.theme-light .text-amber-500,
+.theme-light [class*="text-amber-500"] { color: #92400e !important; }
+.theme-light .text-indigo-500,
+.theme-light [class*="text-indigo-500"] { color: #3730a3 !important; }
+.theme-light .text-rose-500,
+.theme-light [class*="text-rose-500"] { color: #9f1239 !important; }
+
+.theme-light .text-neutral-400,
+.theme-light .text-neutral-500,
+.theme-light .text-zinc-400,
+.theme-light .text-zinc-500,
+.theme-light .text-zinc-600,
+.theme-light .text-stone-400,
+.theme-light .text-stone-500,
+.theme-light .text-stone-600,
+.theme-light .text-slate-400,
+.theme-light .text-slate-500,
+.theme-light .text-slate-600,
+.theme-light [class*="text-neutral-400"],
+.theme-light [class*="text-neutral-500"],
+.theme-light [class*="text-zinc-400"],
+.theme-light [class*="text-zinc-500"],
+.theme-light [class*="text-zinc-600"],
+.theme-light [class*="text-stone-400"],
+.theme-light [class*="text-stone-500"],
+.theme-light [class*="text-stone-600"],
+.theme-light [class*="text-slate-400"],
+.theme-light [class*="text-slate-500"],
+.theme-light [class*="text-slate-600"] {
+    color: #374151 !important;
+}
+
+/* Final Catch-all for LandingView and Modals */
+.theme-light .LandingView,
+.theme-light [class*="LandingView"],
+.theme-light .CustomIdentityModal,
+.theme-light [class*="CustomIdentityModal"],
+.theme-light .MobileCustomIdentityModal,
+.theme-light [class*="MobileCustomIdentityModal"],
+.theme-light .ScenarioSelect,
+.theme-light [class*="ScenarioSelect"],
+.theme-light .MobileScenarioSelect,
+.theme-light [class*="MobileScenarioSelect"],
+.theme-light .DiagnosticPanel,
+.theme-light [class*="DiagnosticPanel"],
+.theme-light .McInspector,
+.theme-light [class*="McInspector"],
+.theme-light .Header,
+.theme-light [class*="Header"],
+.theme-light .Footer,
+.theme-light [class*="Footer"],
+.theme-light .CodexModal,
+.theme-light .MobileCodexModal,
+.theme-light .SettingsModal,
+.theme-light .MobileSettingsModal,
+.theme-light .HistoryModal,
+.theme-light .MobileHistoryModal,
+.theme-light .LibraryModal,
+.theme-light .MobileLibraryModal,
+.theme-light .MemoryModal,
+.theme-light .MobileMemoryModal,
+.theme-light .McModal,
+.theme-light .MobileMcModal,
+.theme-light .SaveManagerModal,
+.theme-light .MobileSaveManagerModal,
+.theme-light .SaveModal,
+.theme-light .MobileSaveModal,
+.theme-light .AiHintModal,
+.theme-light .MobileAiHintModal,
+.theme-light .NpcProfileModal,
+.theme-light .MobileNpcProfileModal,
+.theme-light .Terminal,
+.theme-light [class*="Terminal"],
+.theme-light .MobileTerminal {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+}
+
+.theme-light .LandingView *,
+.theme-light [class*="LandingView"] *,
+.theme-light .CustomIdentityModal *,
+.theme-light [class*="CustomIdentityModal"] *,
+.theme-light .MobileCustomIdentityModal *,
+.theme-light [class*="MobileCustomIdentityModal"] *,
+.theme-light .ScenarioSelect *,
+.theme-light [class*="ScenarioSelect"] *,
+.theme-light .MobileScenarioSelect *,
+.theme-light [class*="MobileScenarioSelect"] *,
+.theme-light .DiagnosticPanel *,
+.theme-light [class*="DiagnosticPanel"] *,
+.theme-light .McInspector *,
+.theme-light [class*="McInspector"] *,
+.theme-light .Header *,
+.theme-light [class*="Header"] *,
+.theme-light .Footer *,
+.theme-light [class*="Footer"] *,
+.theme-light .CodexModal *,
+.theme-light .MobileCodexModal *,
+.theme-light .SettingsModal *,
+.theme-light .MobileSettingsModal *,
+.theme-light .HistoryModal *,
+.theme-light .MobileHistoryModal *,
+.theme-light .LibraryModal *,
+.theme-light .MobileLibraryModal *,
+.theme-light .MemoryModal *,
+.theme-light .MobileMemoryModal *,
+.theme-light .McModal *,
+.theme-light .MobileMcModal *,
+.theme-light .SaveManagerModal *,
+.theme-light .MobileSaveManagerModal *,
+.theme-light .SaveModal *,
+.theme-light .MobileSaveModal *,
+.theme-light .AiHintModal *,
+.theme-light .MobileAiHintModal *,
+.theme-light .NpcProfileModal *,
+.theme-light .MobileNpcProfileModal *,
+.theme-light .Terminal *,
+.theme-light [class*="Terminal"] *,
+.theme-light .MobileTerminal * {
+    border-color: var(--primary-color) !important;
+    color: inherit !important;
+}
+.theme-light .text-emerald-300,
+.theme-light .text-emerald-400,
+.theme-light .text-emerald-500,
+.theme-light [class*="text-emerald-500/"] {
+    color: #059669 !important; /* Darker emerald */
+}
+
+.theme-light .text-cyan-300,
+.theme-light .text-cyan-400,
+.theme-light .text-cyan-500,
+.theme-light [class*="text-cyan-500/"] {
+    color: #0891b2 !important; /* Darker cyan */
+}
+
+.theme-light .text-pink-300,
+.theme-light .text-pink-400,
+.theme-light .text-pink-500,
+.theme-light [class*="text-pink-500/"] {
+    color: #db2777 !important; /* Darker pink */
+}
+
+.theme-light .text-orange-300,
+.theme-light .text-orange-400,
+.theme-light .text-orange-500,
+.theme-light [class*="text-orange-500/"] {
+    color: #ea580c !important; /* Darker orange */
+}
+
+.theme-light .text-amber-300,
+.theme-light .text-amber-400,
+.theme-light .text-amber-500,
+.theme-light [class*="text-amber-500/"] {
+    color: #d97706 !important; /* Darker amber */
+}
+
+.theme-light .text-indigo-300,
+.theme-light .text-indigo-400,
+.theme-light .text-indigo-500,
+.theme-light [class*="text-indigo-500/"] {
+    color: #4f46e5 !important; /* Darker indigo */
+}
+
+.theme-light .text-rose-300,
+.theme-light .text-rose-400,
+.theme-light .text-rose-500,
+.theme-light [class*="text-rose-500/"] {
+    color: #e11d48 !important; /* Darker rose */
+}
+
+/* Scrollbar Overrides */
+.theme-light .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.theme-light .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.3) !important;
+}
+
+/* Shadow Overrides */
+.theme-light [class*="shadow-white"],
+.theme-light [class*="shadow-"] {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.theme-light .shadow-xl,
+.theme-light .shadow-2xl,
+.theme-light .shadow-lg,
+.theme-light .shadow-md {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Backdrop Blur Overrides */
+.theme-light .backdrop-blur-sm,
+.theme-light .backdrop-blur-md,
+.theme-light .backdrop-blur-lg,
+.theme-light .backdrop-blur-xl,
+.theme-light .backdrop-blur-2xl,
+.theme-light .backdrop-blur-3xl {
+    backdrop-filter: blur(12px) !important;
+    background-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* Selection Overrides */
+.theme-light ::selection {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* Input/Textarea Overrides */
+.theme-light input,
+.theme-light textarea,
+.theme-light select {
+    background-color: #ffffff !important;
+    color: #111827 !important;
+    border-color: var(--primary-color) !important;
+}
+
+.theme-light input::placeholder,
+.theme-light textarea::placeholder {
+    color: #9ca3af !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.mono {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(var(--primary-rgb), 0.4);
+    border-radius: 10px;
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--primary-rgb), 0.8);
+    box-shadow: 0 0 10px rgba(var(--primary-rgb), 0.3);
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+    animation: spin-slow 8s linear infinite;
+}
+
+.no-effects *, .no-effects *::before, .no-effects *::after {
+    animation: none !important;
+    transition: none !important;
+    backdrop-filter: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    /* Ensure background and border colors are preserved even if effects are disabled */
+    background-clip: padding-box !important;
+}
+
+@keyframes subtle-zoom {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+}
+.bg-animate {
+    animation: subtle-zoom 20s infinite alternate ease-in-out;
+}
+
+/* Mobile specific fixes */
+@media (max-width: 768px) {
+    input, textarea, select {
+        font-size: 16px !important; /* Prevent iOS zoom on focus */
+    }
+    
+    /* Ensure buttons are large enough for touch */
+    button, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Additional Modal Overrides for Light Mode */
+/* Hide scanlines and overlays in light mode to prevent white screen coverage */
+.theme-light .HistoryModal [class*="bg-linear-gradient"],
+.theme-light .MobileHistoryModal [class*="bg-linear-gradient"],
+.theme-light .Terminal [class*="bg-linear-gradient"],
+.theme-light .LandingView [class*="bg-linear-gradient"] {
+    display: none !important;
+}
+
+.theme-light .CodexModal [class*="bg-"],
+.theme-light .MobileCodexModal [class*="bg-"],
+.theme-light .SettingsModal [class*="bg-"],
+.theme-light .MobileSettingsModal [class*="bg-"],
+.theme-light .HistoryModal [class*="bg-"],
+.theme-light .MobileHistoryModal [class*="bg-"],
+.theme-light .LibraryModal [class*="bg-"],
+.theme-light .MobileLibraryModal [class*="bg-"],
+.theme-light .MemoryModal [class*="bg-"],
+.theme-light .MobileMemoryModal [class*="bg-"],
+.theme-light .McModal [class*="bg-"],
+.theme-light .MobileMcModal [class*="bg-"],
+.theme-light .SaveManagerModal [class*="bg-"],
+.theme-light .MobileSaveManagerModal [class*="bg-"],
+.theme-light .SaveModal [class*="bg-"],
+.theme-light .MobileSaveModal [class*="bg-"],
+.theme-light .AiHintModal [class*="bg-"],
+.theme-light .MobileAiHintModal [class*="bg-"],
+.theme-light .NpcProfileModal [class*="bg-"],
+.theme-light .MobileNpcProfileModal [class*="bg-"],
+.theme-light .Terminal [class*="bg-"],
+.theme-light .MobileTerminal [class*="bg-"],
+.theme-light .DiagnosticPanel [class*="bg-"],
+.theme-light .McInspector [class*="bg-"] {
+    background-color: #f9fafb !important;
+    background-image: none !important;
+}
+
+.theme-light .CodexModal [class*="text-"],
+.theme-light .MobileCodexModal [class*="text-"],
+.theme-light .SettingsModal [class*="text-"],
+.theme-light .MobileSettingsModal [class*="text-"],
+.theme-light .HistoryModal [class*="text-"],
+.theme-light .MobileHistoryModal [class*="text-"],
+.theme-light .LibraryModal [class*="text-"],
+.theme-light .MobileLibraryModal [class*="text-"],
+.theme-light .MemoryModal [class*="text-"],
+.theme-light .MobileMemoryModal [class*="text-"],
+.theme-light .McModal [class*="text-"],
+.theme-light .MobileMcModal [class*="text-"],
+.theme-light .SaveManagerModal [class*="text-"],
+.theme-light .MobileSaveManagerModal [class*="text-"],
+.theme-light .SaveModal [class*="text-"],
+.theme-light .MobileSaveModal [class*="text-"],
+.theme-light .AiHintModal [class*="text-"],
+.theme-light .MobileAiHintModal [class*="text-"],
+.theme-light .NpcProfileModal [class*="text-"],
+.theme-light .MobileNpcProfileModal [class*="text-"],
+.theme-light .Terminal [class*="text-"],
+.theme-light .MobileTerminal [class*="text-"],
+.theme-light .DiagnosticPanel [class*="text-"],
+.theme-light .McInspector [class*="text-"] {
+    color: #111827 !important;
+}
